@@ -7,23 +7,30 @@ import com.cobblemon.mod.common.api.scheduling.ScheduledTask
 import com.cobblemon.mod.common.api.scheduling.ServerTaskTracker
 import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreType
 import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreTypes
+import com.cobblemon.mod.common.client.tooltips.TooltipManager
 import com.cobblemon.mod.common.item.group.CobblemonItemGroups
 import com.cobblemon.mod.common.platform.events.PlatformEvents
+import net.minecraft.commands.synchronization.SingletonArgumentInfo
 import net.minecraft.world.item.Item.Properties
 import us.timinc.mc.cobblemon.counter.api.ClientCounterManager
 import us.timinc.mc.cobblemon.counter.api.CounterType
 import us.timinc.mc.cobblemon.counter.api.CounterTypeRegistry
 import us.timinc.mc.cobblemon.counter.api.ScoreTypeRegistry
+import us.timinc.mc.cobblemon.counter.command.*
+import us.timinc.mc.cobblemon.counter.command.argument.CounterTypeArgument
+import us.timinc.mc.cobblemon.counter.command.argument.ScoreTypeArgument
 import us.timinc.mc.cobblemon.counter.data.SpeciesFormOverride
 import us.timinc.mc.cobblemon.counter.handler.*
 import us.timinc.mc.cobblemon.counter.item.CounterItem
+import us.timinc.mc.cobblemon.counter.item.CounterTooltipGenerator
 import us.timinc.mc.cobblemon.counter.scoretype.CountScoreType
 import us.timinc.mc.cobblemon.counter.scoretype.StreakScoreType
 import us.timinc.mc.cobblemon.timcore.AbstractConfig
 import us.timinc.mc.cobblemon.timcore.AbstractMod
+import us.timinc.mc.cobblemon.timcore.CommandArgumentContainer
 import us.timinc.mc.cobblemon.timcore.ItemContainer
 
-const val MOD_ID: String = "counter"
+const val MOD_ID: String = "cobbled_counter"
 
 object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig::class.java) {
     class CounterConfig : AbstractConfig() {
@@ -51,12 +58,8 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
 
     object SaveTasks {
         val SAVE_COUNTER = ScheduledTask.Builder()
-            .execute { Cobblemon.playerDataManager.saveAllOfOneType(PlayerInstancedDataStores.COUNTER) }
-            .delay(30f)
-            .interval(120f)
-            .infiniteIterations()
-            .tracker(ServerTaskTracker)
-            .build()
+            .execute { Cobblemon.playerDataManager.saveAllOfOneType(PlayerInstancedDataStores.COUNTER) }.delay(30f)
+            .interval(120f).infiniteIterations().tracker(ServerTaskTracker).build()
     }
 
     object CounterTypes {
@@ -74,9 +77,34 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
 
     object Items {
         val COUNTER = registerItem(
-            "counter",
-            ItemContainer({ CounterItem(Properties().stacksTo(1)) }, CobblemonItemGroups.UTILITY_ITEMS_KEY)
+            "counter", ItemContainer({ CounterItem(Properties().stacksTo(1)) }, CobblemonItemGroups.UTILITY_ITEMS_KEY)
         )
+    }
+
+    object Commands {
+        init {
+            registerCommandArgument(
+                CommandArgumentContainer(
+                    modResource("counter_type"),
+                    CounterTypeArgument::class.java,
+                    SingletonArgumentInfo.contextFree(::CounterTypeArgument)
+                )
+            )
+            registerCommandArgument(
+                CommandArgumentContainer(
+                    modResource("score_type"),
+                    ScoreTypeArgument::class.java,
+                    SingletonArgumentInfo.contextFree(::ScoreTypeArgument)
+                )
+            )
+        }
+
+        val GET_SCORE_COMMAND = registerCommand(GetScoreCommand)
+        val GET_SPECIES_SCORE_COMMAND = registerCommand(GetSpeciesScoreCommand)
+        val GET_FORM_SCORE_COMMAND = registerCommand(GetFormScoreCommand)
+        val ADD_SCORE_COMMAND = registerCommand(AddScoreCommand)
+        val REDUCE_SCORE_COMMAND = registerCommand(ReduceScoreCommand)
+        val SET_SCORE_COMMAND = registerCommand(SetScoreCommand)
     }
 
     init {
@@ -90,5 +118,7 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         SaveTasks
         registerReloadListener(SpeciesFormOverride.Manager)
         Items
+        TooltipManager.registerTooltipGenerator(CounterTooltipGenerator)
+        Commands
     }
 }

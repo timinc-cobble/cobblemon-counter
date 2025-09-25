@@ -1,0 +1,12 @@
+{
+  "matcher": {
+    "properties": "basculin",
+    "forms": [
+      "Blue-Striped",
+      "Red-Striped",
+      "White-Striped"
+    ]
+  },
+  "species": "basculin",
+  "form": "Normal"
+}

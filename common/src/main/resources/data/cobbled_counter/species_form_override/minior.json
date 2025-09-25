@@ -1,0 +1,10 @@
+{
+  "matcher": {
+    "properties": "minior",
+    "forms": [
+      "Meteor"
+    ]
+  },
+  "species": "minior",
+  "form": "Normal"
+}

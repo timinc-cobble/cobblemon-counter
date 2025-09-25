@@ -1,0 +1,12 @@
+{
+  "matcher": {
+    "properties": "urshifu",
+    "forms": [
+      "Rapid-Strike",
+      "Gmax",
+      "Rapid-Strike-Gmax"
+    ]
+  },
+  "species": "urshifu",
+  "form": "Normal"
+}

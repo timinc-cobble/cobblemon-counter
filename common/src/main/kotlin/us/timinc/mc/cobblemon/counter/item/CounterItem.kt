@@ -43,7 +43,10 @@ class CounterItem(properties: Properties) : Item(properties) {
         interactionHand: InteractionHand,
     ): InteractionResultHolder<ItemStack> {
         val heldItem = player.getItemInHand(interactionHand)
-        if (!heldItem.`is`(CounterMod.Items.COUNTER.item)) return InteractionResultHolder(InteractionResult.PASS, heldItem)
+        if (!heldItem.`is`(CounterMod.Items.COUNTER.item)) return InteractionResultHolder(
+            InteractionResult.PASS,
+            heldItem
+        )
         if (!level.isClientSide) return InteractionResultHolder(InteractionResult.PASS, heldItem)
 
         if (CLIENT_SPECIES != null) {

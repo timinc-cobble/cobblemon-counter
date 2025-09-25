@@ -1,0 +1,75 @@
+package us.timinc.mc.cobblemon.counter.item
+
+import com.cobblemon.mod.common.client.tooltips.TooltipGenerator
+import net.minecraft.network.chat.Component
+import net.minecraft.resources.ResourceLocation
+import net.minecraft.world.item.ItemStack
+import us.timinc.mc.cobblemon.counter.CounterMod
+import us.timinc.mc.cobblemon.counter.api.ClientCounterManager
+import us.timinc.mc.cobblemon.counter.api.CounterTypeRegistry
+
+object CounterTooltipGenerator : TooltipGenerator() {
+    override fun generateTooltip(stack: ItemStack, lines: MutableList<Component>): MutableList<Component> {
+        val resultLines = mutableListOf<Component>()
+        if (!stack.`is`(CounterMod.Items.COUNTER.item)) {
+            return resultLines
+        }
+
+        try {
+            val mode = if (CounterItem.CLIENT_SPECIES === null) "streak" else "count"
+            resultLines.add(Component.translatable("cobbled_counter.item.counter.tooltip.$mode"))
+            CounterTypeRegistry.counterTypes().forEach {
+                val count: Int
+                val species: ResourceLocation
+                val form: String
+
+                if (mode == "streak") {
+                    val streak = ClientCounterManager.clientCounterData.getStreak(it)
+                    count = streak.count
+                    species = streak.species
+                    form = streak.form
+
+                    if (count == 0) {
+                        resultLines.add(Component.translatable("cobbled_counter.item.counter.tooltip.${it.type}.no_streak"))
+                        return@forEach
+                    }
+                } else {
+                    count =
+                        ClientCounterManager.clientCounterData.getCountScore(
+                            it,
+                            CounterItem.CLIENT_SPECIES,
+                            CounterItem.CLIENT_FORM
+                        )
+                    species = CounterItem.CLIENT_SPECIES ?: return@forEach
+                    form = CounterItem.CLIENT_FORM ?: return@forEach
+                }
+
+                resultLines.add(
+                    Component.translatable(
+                        "cobbled_counter.item.counter.tooltip.${it.type}.$mode",
+                        count,
+                        Component.translatable("cobblemon.species.${species.path}.name"),
+                        if (form == "Normal") "" else Component.translatable(
+                            "cobbled_counter.item.counter.tooltip.form",
+                            form
+                        )
+                    )
+                )
+            }
+            return resultLines
+        } catch (e: Error) {
+            return resultLines
+        }
+    }
+
+    override fun generateAdditionalTooltip(stack: ItemStack, lines: MutableList<Component>): MutableList<Component> {
+        val resultLines = mutableListOf<Component>()
+        if (!stack.`is`(CounterMod.Items.COUNTER.item)) {
+            return resultLines
+        }
+
+        val otherMode = if (CounterItem.CLIENT_SPECIES === null) "count" else "streak"
+        resultLines.add(Component.translatable("cobbled_counter.item.counter.tooltip.switch_mode_info.to_$otherMode"))
+        return resultLines
+    }
+}

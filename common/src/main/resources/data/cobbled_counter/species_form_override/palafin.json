@@ -1,0 +1,10 @@
+{
+  "matcher": {
+    "properties": "palafin",
+    "forms": [
+      "Hero"
+    ]
+  },
+  "species": "palafin",
+  "form": "Normal"
+}

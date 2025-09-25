@@ -1,0 +1,12 @@
+{
+  "matcher": {
+    "properties": "gourgeist",
+    "forms": [
+      "Small",
+      "Large",
+      "Super"
+    ]
+  },
+  "species": "gourgeist",
+  "form": "Normal"
+}

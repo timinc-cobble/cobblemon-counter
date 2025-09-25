@@ -1,0 +1,12 @@
+{
+  "matcher": {
+    "properties": "pumpkaboo",
+    "forms": [
+      "Small",
+      "Large",
+      "Super"
+    ]
+  },
+  "species": "pumpkaboo",
+  "form": "Normal"
+}

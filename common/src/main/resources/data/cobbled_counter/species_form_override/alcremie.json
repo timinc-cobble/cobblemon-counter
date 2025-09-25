@@ -1,0 +1,18 @@
+{
+  "matcher": {
+    "properties": "alcremie",
+    "forms": [
+      "Ruby-Cream",
+      "Matcha-Cream",
+      "Mint-Cream",
+      "Lemon-Cream",
+      "Salted-Cream",
+      "Ruby-Swirl",
+      "Caramel-Swirl",
+      "Rainbow-Swirl",
+      "Gmax"
+    ]
+  },
+  "species": "alcremie",
+  "form": "Normal"
+}
