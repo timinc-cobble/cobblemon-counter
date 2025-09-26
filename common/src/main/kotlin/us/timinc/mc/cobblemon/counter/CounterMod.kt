@@ -3,6 +3,8 @@ package us.timinc.mc.cobblemon.counter
 import com.cobblemon.mod.common.Cobblemon
 import com.cobblemon.mod.common.api.Priority
 import com.cobblemon.mod.common.api.events.CobblemonEvents
+import com.cobblemon.mod.common.api.reactive.CancelableObservable
+import com.cobblemon.mod.common.api.reactive.EventObservable
 import com.cobblemon.mod.common.api.scheduling.ScheduledTask
 import com.cobblemon.mod.common.api.scheduling.ServerTaskTracker
 import com.cobblemon.mod.common.api.storage.player.PlayerInstancedDataStoreType
@@ -20,6 +22,8 @@ import us.timinc.mc.cobblemon.counter.command.*
 import us.timinc.mc.cobblemon.counter.command.argument.CounterTypeArgument
 import us.timinc.mc.cobblemon.counter.command.argument.ScoreTypeArgument
 import us.timinc.mc.cobblemon.counter.data.SpeciesFormOverride
+import us.timinc.mc.cobblemon.counter.event.BreakStreakEvent
+import us.timinc.mc.cobblemon.counter.event.RecordEvent
 import us.timinc.mc.cobblemon.counter.handler.*
 import us.timinc.mc.cobblemon.counter.item.CounterItem
 import us.timinc.mc.cobblemon.counter.item.CounterTooltipGenerator
@@ -79,6 +83,20 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         val COUNTER = registerItem(
             "counter", ItemContainer({ CounterItem(Properties().stacksTo(1)) }, CobblemonItemGroups.UTILITY_ITEMS_KEY)
         )
+    }
+
+    object Events {
+        @JvmField
+        val RECORD_PRE = CancelableObservable<RecordEvent.Pre>()
+
+        @JvmField
+        val RECORD_POST = EventObservable<RecordEvent.Post>()
+
+        @JvmField
+        val BREAK_STREAK_PRE = CancelableObservable<BreakStreakEvent.Pre>()
+
+        @JvmField
+        val BREAK_STREAK_POST = EventObservable<BreakStreakEvent.Post>()
     }
 
     object Commands {

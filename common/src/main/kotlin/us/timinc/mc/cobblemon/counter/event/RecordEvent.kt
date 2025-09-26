@@ -11,14 +11,14 @@ interface RecordEvent {
     val counterType: CounterType
     val speciesId: ResourceLocation
     val formName: String
-    val pokemon: Pokemon?
+    val pokemon: Pokemon
 
     class Pre(
         override val manager: CounterManager,
         override val counterType: CounterType,
         override val speciesId: ResourceLocation,
         override val formName: String,
-        override val pokemon: Pokemon?,
+        override val pokemon: Pokemon,
     ) : Cancelable(), RecordEvent
 
     class Post(
@@ -26,6 +26,6 @@ interface RecordEvent {
         override val counterType: CounterType,
         override val speciesId: ResourceLocation,
         override val formName: String,
-        override val pokemon: Pokemon?,
+        override val pokemon: Pokemon,
     ) : RecordEvent
 }

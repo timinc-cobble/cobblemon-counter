@@ -1,6 +1,5 @@
 package us.timinc.mc.cobblemon.counter.data
 
-import com.cobblemon.mod.common.api.pokemon.PokemonSpecies
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.google.gson.Gson
 import com.google.gson.JsonElement
@@ -48,12 +47,6 @@ data class SpeciesFormOverride(
             }
         }
 
-        fun findMatch(speciesId: ResourceLocation, formName: String): SpeciesFormOverride? {
-            val pokemon = Pokemon()
-            pokemon.species = PokemonSpecies.getByIdentifier(speciesId) ?: return null
-            pokemon.form = pokemon.species.forms.find { it.name == formName } ?: return null
-
-            return overrides.find { it.matches(pokemon) }
-        }
+        fun findMatch(pokemon: Pokemon): SpeciesFormOverride? = overrides.find { it.matches(pokemon) }
     }
 }

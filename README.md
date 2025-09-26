@@ -1,3 +1,69 @@
-# Counter
+# Cobbled Counter
 
-If I'm not filled out, riot.
+v1.6.1-1.5.2
+
+[Modrinth](https://modrinth.com/mod/cobblemon-counter)
+
+[CurseForge](https://www.curseforge.com/minecraft/mc-mods/cobblemon-counter)
+
+[GitHub](https://github.com/timinc-cobble/cobblemon-counter)
+
+## What if…
+
+…the game kept track of how many times you did a thing, in Cobblemon?
+
+## Features
+
+- Tracks various player action stats including:
+    - Captures
+    - Knock Outs (in-battle)
+    - Resurrections
+    - Fish-ups
+    - Egg hatchings
+- Tracks both counts and streaks for every stat. Counts are for the lifetime of the player in a given world, and streaks are broken if the player performs that action on another species/form.
+    - Some odd variants are mapped back to the Normal variant.
+- Adds a Counter item to view your current stats.
+- Commands to get and modify scores for a given player.
+
+## Dependencies
+
+- [Cobblemon](https://www.notion.so/Cobblemon-22157e0d4afd80a49896c70a775a3c7f?pvs=21)
+- [Cobblemon Tim Core](https://www.notion.so/Tim-Core-22057e0d4afd809b9c02e78f26805376?pvs=21)
+
+## Testing
+
+As a quick test for the counting functionality, jump into a fresh world and give yourself some Master Balls. Spawn in a Caterpie, catch it. Observe the message in the chat telling you that you have captured a Caterpie, and have a Capture Count of 1 and Capture Streak of 1 for Caterpie. Spawn in another Caterpie, catch it. Observe the message in the chat telling you that you have a Capture Count and Streak of 2 for Caterpie. Spawn in a Weedle, catch it. Observe the message in the chat telling you that you have a Capture Count and Streak of 1 for Weedle. Spawn in a final Caterpie, catch it. Observer the message in the chat telling you that you have a Capture Count of 3 for Caterpie, but a Capture Streak of only 1 for Caterpie. This is because you have captured a total of 3 Caterpie overall, but you broke your original streak of 2 Caterpie by capturing that Weedle, and also broke that Weedle streak by capturing that final Caterpie.
+
+## Player Help
+
+[Config Options](https://www.notion.so/Config-Options-27957e0d4afd807c898af3ebeda16361?pvs=21)
+
+## Addon Dev Help
+
+### Data Pack Help
+
+[Making an Addon](https://www.notion.so/Making-an-Addon-27957e0d4afd80ca979cfff6fd416d17?pvs=21)
+
+### Resource Pack Help
+
+[Translations](https://www.notion.so/Translations-27957e0d4afd805197dee3b10bdde60a?pvs=21)
+
+[Resources](https://www.notion.so/Resources-27957e0d4afd8023bc3ece636160151d?pvs=21)
+
+## Mod Dev Help
+
+[Events](https://www.notion.so/Events-27957e0d4afd80d0bce1cfbe011c7d74?pvs=21)
+
+[CounterManager](https://www.notion.so/CounterManager-27a57e0d4afd8025992ff3c957296f78?pvs=21)
+
+## Roadmap
+
+If you’d like to keep up with the work being done on the mod, please join [the Discord](https://discord.com/invite/WKAR27SdSv) and subscribe to notifications on the channel for this content. You can also keep track of the to do list available on the mod’s main page (<link to the mod’s main page>).
+
+## Feedback
+
+If you have any questions or requests concerning the mod, or just want to drop by and say hi, visit us over at [the Discord](https://discord.com/invite/WKAR27SdSv)!
+
+## Support
+
+If I've made something you enjoyed or helped you make something, please consider [dropping a tip in the cup](https://ko-fi.com/timsminecraftmods) and mention how I helped if you'd like!
