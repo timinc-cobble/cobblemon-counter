@@ -1,6 +1,6 @@
 # Cobbled Counter
 
-v1.6.1-1.5.2
+v1.6.1-1.5
 
 [Modrinth](https://modrinth.com/mod/cobblemon-counter)
 
@@ -15,13 +15,13 @@ v1.6.1-1.5.2
 ## Features
 
 - Tracks various player action stats including:
-    - Captures
-    - Knock Outs (in-battle)
-    - Resurrections
-    - Fish-ups
-    - Egg hatchings
+  - Captures
+  - Knock Outs (in-battle)
+  - Resurrections
+  - Fish-ups
+  - Egg hatchings
 - Tracks both counts and streaks for every stat. Counts are for the lifetime of the player in a given world, and streaks are broken if the player performs that action on another species/form.
-    - Some odd variants are mapped back to the Normal variant.
+  - Some odd variants are mapped back to the Normal variant.
 - Adds a Counter item to view your current stats.
 - Commands to get and modify scores for a given player.
 
@@ -35,6 +35,8 @@ v1.6.1-1.5.2
 As a quick test for the counting functionality, jump into a fresh world and give yourself some Master Balls. Spawn in a Caterpie, catch it. Observe the message in the chat telling you that you have captured a Caterpie, and have a Capture Count of 1 and Capture Streak of 1 for Caterpie. Spawn in another Caterpie, catch it. Observe the message in the chat telling you that you have a Capture Count and Streak of 2 for Caterpie. Spawn in a Weedle, catch it. Observe the message in the chat telling you that you have a Capture Count and Streak of 1 for Weedle. Spawn in a final Caterpie, catch it. Observer the message in the chat telling you that you have a Capture Count of 3 for Caterpie, but a Capture Streak of only 1 for Caterpie. This is because you have captured a total of 3 Caterpie overall, but you broke your original streak of 2 Caterpie by capturing that Weedle, and also broke that Weedle streak by capturing that final Caterpie.
 
 ## Player Help
+
+[Commands](https://www.notion.so/Commands-27f57e0d4afd80be9f3cdbb041df3b0a?pvs=21)
 
 [Config Options](https://www.notion.so/Config-Options-27957e0d4afd807c898af3ebeda16361?pvs=21)
 
