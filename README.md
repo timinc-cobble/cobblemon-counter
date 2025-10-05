@@ -1,6 +1,6 @@
 # Cobbled Counter
 
-v1.6.1-1.5
+v1.6.1-1.6
 
 [Modrinth](https://modrinth.com/mod/cobblemon-counter)
 
@@ -36,31 +36,33 @@ As a quick test for the counting functionality, jump into a fresh world and give
 
 ## Player Help
 
-[Commands](https://www.notion.so/Commands-27f57e0d4afd80be9f3cdbb041df3b0a?pvs=21)
+[Commands](https://www.notion.so/Commands-28357e0d4afd8118a994dd92ea7e096d?pvs=21)
 
-[Config Options](https://www.notion.so/Config-Options-27957e0d4afd807c898af3ebeda16361?pvs=21)
+[Config Options](https://www.notion.so/Config-Options-28357e0d4afd81dea19fefc4e85a3263?pvs=21)
 
 ## Addon Dev Help
 
 ### Data Pack Help
 
-[Making an Addon](https://www.notion.so/Making-an-Addon-27957e0d4afd80ca979cfff6fd416d17?pvs=21)
+[Spawning Conditions](https://www.notion.so/Spawning-Conditions-28357e0d4afd80bc842ed201f822c3ee?pvs=21)
+
+[Making an Addon](https://www.notion.so/Making-an-Addon-28357e0d4afd81e1b939cea35f23e465?pvs=21)
 
 ### Resource Pack Help
 
-[Translations](https://www.notion.so/Translations-27957e0d4afd805197dee3b10bdde60a?pvs=21)
+[Translations](https://www.notion.so/Translations-28357e0d4afd8175b854fc2ae76c9973?pvs=21)
 
-[Resources](https://www.notion.so/Resources-27957e0d4afd8023bc3ece636160151d?pvs=21)
+[Resources](https://www.notion.so/Resources-28357e0d4afd8146940bcd576da6274c?pvs=21)
 
 ## Mod Dev Help
 
-[Events](https://www.notion.so/Events-27957e0d4afd80d0bce1cfbe011c7d74?pvs=21)
+[Events](https://www.notion.so/Events-28357e0d4afd81229051d2740c2433bc?pvs=21)
 
-[CounterManager](https://www.notion.so/CounterManager-27a57e0d4afd8025992ff3c957296f78?pvs=21)
+[CounterManager](https://www.notion.so/CounterManager-28357e0d4afd8142bf88c61c9c4146f6?pvs=21)
 
 ## Roadmap
 
-If you’d like to keep up with the work being done on the mod, please join [the Discord](https://discord.com/invite/WKAR27SdSv) and subscribe to notifications on the channel for this content. You can also keep track of the to do list available on the mod’s main page (<link to the mod’s main page>).
+If you’d like to keep up with the work being done on the mod, please join [the Discord](https://discord.com/invite/WKAR27SdSv) and subscribe to notifications on the channel for this content. You can also keep track of the to do list available on the mod’s main page ([Counter](https://www.notion.so/Counter-21d57e0d4afd80d0815fc97b89368998?pvs=21)).
 
 ## Feedback
 
