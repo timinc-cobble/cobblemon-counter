@@ -83,7 +83,7 @@ class CounterManager(
     @Suppress("MemberVisibilityCanBePrivate")
     fun record(
         pokemon: Pokemon,
-        counterType: CounterType
+        counterType: CounterType,
     ) {
         val initialSpeciesId = pokemon.species.resourceIdentifier
         val initialFormName = pokemon.form.name
