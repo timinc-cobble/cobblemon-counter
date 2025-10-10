@@ -44,11 +44,11 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
             ScoreTypes
         }
 
-        val breakStreakOnForm: Set<String> = CounterTypeRegistry.types().toSet()
+        val ignoreFormFor: Set<String> = emptySet()
         val broadcast: Set<String> = CounterTypeRegistry.types().toSet()
     }
 
-    fun breakStreakOnForm(counterType: CounterType): Boolean = config.breakStreakOnForm.contains(counterType.type)
+    fun breakStreakOnForm(counterType: CounterType): Boolean = !config.ignoreFormFor.contains(counterType.type)
 
     object PlayerInstancedDataStores {
         val COUNTER = PlayerInstancedDataStoreTypes.register(
