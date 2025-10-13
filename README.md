@@ -15,20 +15,20 @@ v1.6.1-1.6
 ## Features
 
 - Tracks various player action stats including:
-  - Captures
-  - Knock Outs (in-battle)
-  - Resurrections
-  - Fish-ups
-  - Egg hatchings
+    - Captures
+    - Knock Outs (in-battle)
+    - Resurrections
+    - Fish-ups
+    - Egg hatchings
 - Tracks both counts and streaks for every stat. Counts are for the lifetime of the player in a given world, and streaks are broken if the player performs that action on another species/form.
-  - Some odd variants are mapped back to the Normal variant.
+    - Some odd variants are mapped back to the Normal variant.
 - Adds a Counter item to view your current stats.
 - Commands to get and modify scores for a given player.
 
 ## Dependencies
 
 - [Cobblemon](https://www.notion.so/Cobblemon-22157e0d4afd80a49896c70a775a3c7f?pvs=21)
-- [Cobblemon Tim Core](https://www.notion.so/Tim-Core-22057e0d4afd809b9c02e78f26805376?pvs=21)
+- [Tim Core](https://www.notion.so/Tim-Core-22057e0d4afd809b9c02e78f26805376?pvs=21)
 
 ## Testing
 
@@ -59,6 +59,10 @@ As a quick test for the counting functionality, jump into a fresh world and give
 [Events](https://www.notion.so/Events-28357e0d4afd81229051d2740c2433bc?pvs=21)
 
 [CounterManager](https://www.notion.so/CounterManager-28357e0d4afd8142bf88c61c9c4146f6?pvs=21)
+
+## Known Issues
+
+- v1.6.1-1.6.0 had issues with handling stats when it’d been told to ignore forms. v1.6.1-1.6.1 remedies this.
 
 ## Roadmap
 

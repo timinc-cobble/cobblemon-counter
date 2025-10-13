@@ -8,6 +8,7 @@ import us.timinc.mc.cobblemon.counter.extension.getCounterManager
 class CountSpawningCondition : AppendageCondition {
     @Suppress("MemberVisibilityCanBePrivate")
     val counts: List<CountRequirement>? = null
+
     @Suppress("MemberVisibilityCanBePrivate")
     val streaks: List<CountRequirement>? = null
 
