@@ -57,7 +57,7 @@ class ClientCounterManager(
                     for ((formName, count) in speciesRecord) {
                         val clientBroadcastOn = config.broadcast.contains(counterType.type)
                         val serverBroadcastOn = data.broadcasts.contains(counterType.type)
-                        if (clientBroadcastOn || serverBroadcastOn) {
+                        if (clientBroadcastOn && serverBroadcastOn) {
                             val player = Minecraft.getInstance().player ?: return
                             player.sendSystemMessage(
                                 Component.translatable(
