@@ -15,13 +15,13 @@ v1.6.1-1.6
 ## Features
 
 - Tracks various player action stats including:
-    - Captures
-    - Knock Outs (in-battle)
-    - Resurrections
-    - Fish-ups
-    - Egg hatchings
+  - Captures
+  - Knock Outs (in-battle)
+  - Resurrections
+  - Fish-ups
+  - Egg hatchings
 - Tracks both counts and streaks for every stat. Counts are for the lifetime of the player in a given world, and streaks are broken if the player performs that action on another species/form.
-    - Some odd variants are mapped back to the Normal variant.
+  - Some odd variants are mapped back to the Normal variant.
 - Adds a Counter item to view your current stats.
 - Commands to get and modify scores for a given player.
 
@@ -62,7 +62,8 @@ As a quick test for the counting functionality, jump into a fresh world and give
 
 ## Known Issues
 
-- v1.6.1-1.6.0 had issues with handling stats when it’d been told to ignore forms. v1.6.1-1.6.1 remedies this.
+- v1.6.1-1.6.0 had a common user issue due to a quirk in the way adding hatching worked for the form tracking stuff in the config. v1.6.1-1.6.1 remedies this.
+- v1.6.1-1.6.1 and below had an error where the client could opt into what the server had opted out of for broadcasts. v1.6.1-1.6.2 remedies this.
 
 ## Roadmap
 
