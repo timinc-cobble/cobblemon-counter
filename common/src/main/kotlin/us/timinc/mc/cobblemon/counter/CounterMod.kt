@@ -30,10 +30,7 @@ import us.timinc.mc.cobblemon.counter.item.CounterTooltipGenerator
 import us.timinc.mc.cobblemon.counter.scoretype.CountScoreType
 import us.timinc.mc.cobblemon.counter.scoretype.StreakScoreType
 import us.timinc.mc.cobblemon.counter.spawning.CountSpawningCondition
-import us.timinc.mc.cobblemon.timcore.AbstractConfig
-import us.timinc.mc.cobblemon.timcore.AbstractMod
-import us.timinc.mc.cobblemon.timcore.CommandArgumentContainer
-import us.timinc.mc.cobblemon.timcore.ItemContainer
+import us.timinc.mc.cobblemon.timcore.*
 
 const val MOD_ID: String = "cobbled_counter"
 
@@ -131,7 +128,7 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.LOWEST, CatchHandler::handle)
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.LOWEST, BattleFaintedHandler::handle)
         CobblemonEvents.FOSSIL_REVIVED.subscribe(Priority.LOWEST, FossilRevivedHandler::handle)
-        CobblemonEvents.POKEMON_ENTITY_SPAWN.subscribe(Priority.LOWEST, PokemonEntitySpawnHandler::handle)
+        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.LOWEST, FishedUpHandler::handle)
         CobblemonEvents.HATCH_EGG_POST.subscribe(Priority.LOWEST, EggHatchHandler::handle)
         registerSpawningCondition(CountSpawningCondition::class.java)
         PlayerInstancedDataStores
