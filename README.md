@@ -36,35 +36,29 @@ As a quick test for the counting functionality, jump into a fresh world and give
 
 ## Player Help
 
-[Commands](https://www.notion.so/Commands-28357e0d4afd8118a994dd92ea7e096d?pvs=21)
+[Commands](https://www.notion.so/Commands-2b657e0d4afd8196b040d002dff9fbce?pvs=21)
 
-[Config Options](https://www.notion.so/Config-Options-28357e0d4afd81dea19fefc4e85a3263?pvs=21)
+[Config Options](https://www.notion.so/Config-Options-2b657e0d4afd8146b1c4e2125fbc72b3?pvs=21)
 
 ## Addon Dev Help
 
 ### Data Pack Help
 
-[Spawning Conditions](https://www.notion.so/Spawning-Conditions-28357e0d4afd80bc842ed201f822c3ee?pvs=21)
+[Spawning Conditions](https://www.notion.so/Spawning-Conditions-2b657e0d4afd81dba51cedc479ea5659?pvs=21)
 
-[Making an Addon](https://www.notion.so/Making-an-Addon-28357e0d4afd81e1b939cea35f23e465?pvs=21)
+[Making an Addon](https://www.notion.so/Making-an-Addon-2b657e0d4afd81139c08f9349b32faaf?pvs=21)
 
 ### Resource Pack Help
 
-[Translations](https://www.notion.so/Translations-28357e0d4afd8175b854fc2ae76c9973?pvs=21)
+[Translations](https://www.notion.so/Translations-2b657e0d4afd8132bd31c0944063037f?pvs=21)
 
-[Resources](https://www.notion.so/Resources-28357e0d4afd8146940bcd576da6274c?pvs=21)
+[Resources](https://www.notion.so/Resources-2b657e0d4afd81d58e4de80c7e4a776e?pvs=21)
 
 ## Mod Dev Help
 
-[Events](https://www.notion.so/Events-28357e0d4afd81229051d2740c2433bc?pvs=21)
+[Events](https://www.notion.so/Events-2b657e0d4afd815680cadc97f1595a9b?pvs=21)
 
-[CounterManager](https://www.notion.so/CounterManager-28357e0d4afd8142bf88c61c9c4146f6?pvs=21)
-
-## Known Issues
-
-- v1.6.1-1.6.0 had a common user issue due to a quirk in the way adding hatching worked for the form tracking stuff in the config. v1.6.1-1.6.1 remedies this.
-- v1.6.1-1.6.1 and below had an error where the client could opt into what the server had opted out of for broadcasts. v1.6.1-1.6.2 remedies this.
-- v1.6.1-1.6.2 and below were on the previous POKEMON_ENTITY_SPAWN event. This could be cancelled or modified before Counter got a chance to do its thing, and v1.6.1-1.6.3 remedies this.
+[CounterManager](https://www.notion.so/CounterManager-2b657e0d4afd816aa23bed5600d70fd0?pvs=21)
 
 ## Roadmap
 
