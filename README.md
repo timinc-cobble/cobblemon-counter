@@ -1,6 +1,6 @@
 # Cobbled Counter
 
-v1.6.1-1.6
+v1.7.0-1.7
 
 [Modrinth](https://modrinth.com/mod/cobblemon-counter)
 
