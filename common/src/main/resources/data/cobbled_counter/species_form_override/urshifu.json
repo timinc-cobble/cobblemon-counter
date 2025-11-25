@@ -1,12 +1,10 @@
 {
-  "matcher": {
-    "properties": "urshifu",
-    "forms": [
-      "Rapid-Strike",
-      "Gmax",
-      "Rapid-Strike-Gmax"
-    ]
-  },
+  "targetSpecies": "urshifu",
+  "targetForms": [
+    "Rapid-Strike",
+    "Gmax",
+    "Rapid-Strike-Gmax"
+  ],
   "species": "urshifu",
   "form": "Normal"
 }

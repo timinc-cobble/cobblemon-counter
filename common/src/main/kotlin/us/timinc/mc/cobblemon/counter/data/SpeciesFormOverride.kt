@@ -10,10 +10,10 @@ import net.minecraft.resources.ResourceLocation
 import net.minecraft.server.packs.resources.ResourceManager
 import net.minecraft.util.profiling.ProfilerFiller
 import us.timinc.mc.cobblemon.timcore.AbstractReloadListener
-import us.timinc.mc.cobblemon.timcore.PokemonMatcher
 
 data class SpeciesFormOverride(
-    val matcher: PokemonMatcher,
+    val targetSpecies: String,
+    val targetForms: List<String>,
     val species: String,
     val form: String,
 ) {
@@ -22,14 +22,16 @@ data class SpeciesFormOverride(
     companion object {
         val CODEC: Codec<SpeciesFormOverride> = RecordCodecBuilder.create { instance ->
             instance.group(
-                PokemonMatcher.CODEC.fieldOf("matcher").forGetter(SpeciesFormOverride::matcher),
+                Codec.STRING.fieldOf("targetSpecies").forGetter(SpeciesFormOverride::targetSpecies),
+                Codec.STRING.listOf().fieldOf("targetForms").forGetter(SpeciesFormOverride::targetForms),
                 Codec.STRING.fieldOf("species").forGetter(SpeciesFormOverride::species),
                 Codec.STRING.fieldOf("form").forGetter(SpeciesFormOverride::form)
             ).apply(instance, ::SpeciesFormOverride)
         }
     }
 
-    fun matches(pokemon: Pokemon): Boolean = matcher.matches(pokemon)
+    fun matches(species: ResourceLocation, formName: String) =
+        targetSpecies == species.path && targetForms.contains(formName)
 
     object Manager : AbstractReloadListener(Gson(), "species_form_override") {
         private val overrides: MutableList<SpeciesFormOverride> = mutableListOf()
@@ -47,6 +49,10 @@ data class SpeciesFormOverride(
             }
         }
 
-        fun findMatch(pokemon: Pokemon): SpeciesFormOverride? = overrides.find { it.matches(pokemon) }
+        fun findMatch(pokemon: Pokemon): SpeciesFormOverride? =
+            findMatch(pokemon.species.resourceIdentifier, pokemon.form.name)
+
+        fun findMatch(species: ResourceLocation, formName: String) =
+            overrides.find { it.matches(species, formName) }
     }
 }

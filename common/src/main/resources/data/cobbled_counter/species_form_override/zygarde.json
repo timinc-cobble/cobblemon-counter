@@ -1,13 +1,11 @@
 {
-  "matcher": {
-    "properties": "zygarde",
-    "forms": [
-      "10%",
-      "10%-C",
-      "50%-C",
-      "Complete"
-    ]
-  },
+  "targetSpecies": "zygarde",
+  "targetForms": [
+    "10%",
+    "10%-C",
+    "50%-C",
+    "Complete"
+  ],
   "species": "zygarde",
   "form": "Normal"
 }

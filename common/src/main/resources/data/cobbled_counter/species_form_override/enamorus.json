@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "enamorus",
-    "forms": [
-      "Therian"
-    ]
-  },
+  "targetSpecies": "enamorus",
+  "targetForms": [
+    "Therian"
+  ],
   "species": "enamorus",
   "form": "Normal"
 }
