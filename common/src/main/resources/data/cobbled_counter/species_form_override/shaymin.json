@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "shaymin",
-    "forms": [
-      "Sky"
-    ]
-  },
+  "targetSpecies": "shaymin",
+  "targetForms": [
+    "Sky"
+  ],
   "species": "shaymin",
   "form": "Normal"
 }

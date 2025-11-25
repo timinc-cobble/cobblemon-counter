@@ -1,11 +1,9 @@
 {
-  "matcher": {
-    "properties": "kyurem",
-    "forms": [
-      "Black",
-      "White"
-    ]
-  },
+  "targetSpecies": "kyurem",
+  "targetForms": [
+    "Black",
+    "White"
+  ],
   "species": "kyurem",
   "form": "Normal"
 }

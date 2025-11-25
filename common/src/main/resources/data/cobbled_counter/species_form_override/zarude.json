@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "zarude",
-    "forms": [
-      "Dada"
-    ]
-  },
+  "targetSpecies": "zarude",
+  "targetForms": [
+    "Dada"
+  ],
   "species": "zarude",
   "form": "Normal"
 }

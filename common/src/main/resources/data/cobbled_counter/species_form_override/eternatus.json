@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "eternatus",
-    "forms": [
-      "Eternamax"
-    ]
-  },
+  "targetSpecies": "eternatus",
+  "targetForms": [
+    "Eternamax"
+  ],
   "species": "eternatus",
   "form": "Normal"
 }

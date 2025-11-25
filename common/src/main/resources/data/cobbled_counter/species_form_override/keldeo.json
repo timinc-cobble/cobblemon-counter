@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "keldeo",
-    "forms": [
-      "Resolute"
-    ]
-  },
+  "targetSpecies": "keldeo",
+  "targetForms": [
+    "Resolute"
+  ],
   "species": "keldeo",
   "form": "Normal"
 }

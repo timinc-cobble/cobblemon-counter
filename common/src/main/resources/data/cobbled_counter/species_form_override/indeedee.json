@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "indeedee",
-    "forms": [
-      "F"
-    ]
-  },
+  "targetSpecies": "indeedee",
+  "targetForms": [
+    "F"
+  ],
   "species": "indeedee",
   "form": "Normal"
 }
