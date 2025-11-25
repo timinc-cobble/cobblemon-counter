@@ -2,6 +2,7 @@ package us.timinc.mc.cobblemon.counter.api
 
 import net.minecraft.resources.ResourceLocation
 import us.timinc.mc.cobblemon.counter.CounterMod.breakStreakOnForm
+import us.timinc.mc.cobblemon.counter.data.SpeciesFormOverride
 
 abstract class AbstractCounterManager {
     abstract val counters: Map<CounterType, Counter>
@@ -18,7 +19,10 @@ abstract class AbstractCounterManager {
         val streak = getStreak(counterType)
         if (species === null) return streak.count
         if (form === null || !breakStreakOnForm(counterType)) return if (species == streak.species) streak.count else 0
-        return if (species == streak.species && form == streak.form) streak.count else 0
+
+        val formOverride = SpeciesFormOverride.Manager.findMatch(species, form)
+        val actualForm = formOverride?.form ?: form
+        return if (species == streak.species && actualForm == streak.form) streak.count else 0
     }
 
     fun getCountScore(counterType: CounterType, species: ResourceLocation? = null, form: String? = null): Int {
@@ -27,6 +31,9 @@ abstract class AbstractCounterManager {
         }
         val speciesRecord = getCounter(counterType).count[species] ?: return 0
         if (form === null || !breakStreakOnForm(counterType)) return speciesRecord.values.fold(0) { speciesTotal, speciesCount -> speciesTotal + speciesCount }
-        return speciesRecord.getOrDefault(form, 0)
+
+        val formOverride = SpeciesFormOverride.Manager.findMatch(species, form)
+        val actualForm = formOverride?.form ?: form
+        return speciesRecord.getOrDefault(actualForm, 0)
     }
 }

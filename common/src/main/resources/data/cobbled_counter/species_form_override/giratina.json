@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "giratina",
-    "forms": [
-      "Origin"
-    ]
-  },
+  "targetSpecies": "giratina",
+  "targetForms": [
+    "Origin"
+  ],
   "species": "giratina",
   "form": "Normal"
 }

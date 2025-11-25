@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "darmanitan",
-    "forms": [
-      "Galar-Zen"
-    ]
-  },
+  "targetSpecies": "darmanitan",
+  "targetForms": [
+    "Galar-Zen"
+  ],
   "species": "darmanitan",
   "form": "Galar"
 }

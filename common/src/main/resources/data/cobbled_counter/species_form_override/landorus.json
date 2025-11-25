@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "landorus",
-    "forms": [
-      "Therian"
-    ]
-  },
+  "targetSpecies": "landorus",
+  "targetForms": [
+    "Therian"
+  ],
   "species": "landorus",
   "form": "Normal"
 }

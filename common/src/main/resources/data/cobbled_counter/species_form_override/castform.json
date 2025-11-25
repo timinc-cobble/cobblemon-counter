@@ -1,12 +1,10 @@
 {
-  "matcher": {
-    "properties": "castform",
-    "forms": [
-      "Rainy",
-      "Snowy",
-      "Sunny"
-    ]
-  },
+  "targetSpecies": "castform",
+  "targetForms": [
+    "Rainy",
+    "Snowy",
+    "Sunny"
+  ],
   "species": "castform",
   "form": "Normal"
 }

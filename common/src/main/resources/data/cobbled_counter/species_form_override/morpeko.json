@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "morpeko",
-    "forms": [
-      "Hangry"
-    ]
-  },
+  "targetSpecies": "morpeko",
+  "targetForms": [
+    "Hangry"
+  ],
   "species": "morpeko",
   "form": "Normal"
 }

@@ -1,12 +1,10 @@
 {
-  "matcher": {
-    "properties": "necrozma",
-    "forms": [
-      "Dawn-Wings",
-      "Dusk-Mane",
-      "Ultra"
-    ]
-  },
+  "targetSpecies": "necrozma",
+  "targetForms": [
+    "Dawn-Wings",
+    "Dusk-Mane",
+    "Ultra"
+  ],
   "species": "necrozma",
   "form": "Normal"
 }

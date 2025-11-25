@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "meowstic",
-    "forms": [
-      "F"
-    ]
-  },
+  "targetSpecies": "meowstic",
+  "targetForms": [
+    "F"
+  ],
   "species": "meowstic",
   "form": "Normal"
 }

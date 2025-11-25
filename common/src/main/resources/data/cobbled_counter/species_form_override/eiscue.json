@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "eiscue",
-    "forms": [
-      "Noice-Face"
-    ]
-  },
+  "targetSpecies": "eiscue",
+  "targetForms": [
+    "Noice-Face"
+  ],
   "species": "eiscue",
   "form": "Normal"
 }

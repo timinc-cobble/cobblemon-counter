@@ -1,10 +1,6 @@
 {
-  "matcher": {
-    "properties": "aegislash",
-    "forms": [
-      "Blade"
-    ]
-  },
+  "targetSpecies": "aegislash",
+  "targetForms": ["Blade"],
   "species": "aegislash",
   "form": "Normal"
 }

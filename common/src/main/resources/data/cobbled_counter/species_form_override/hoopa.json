@@ -1,10 +1,8 @@
 {
-  "matcher": {
-    "properties": "hoopa",
-    "forms": [
-      "Unbound"
-    ]
-  },
+  "targetSpecies": "hoopa",
+  "targetForms": [
+    "Unbound"
+  ],
   "species": "hoopa",
   "form": "Normal"
 }

@@ -1,12 +1,10 @@
 {
-  "matcher": {
-    "properties": "pumpkaboo",
-    "forms": [
-      "Small",
-      "Large",
-      "Super"
-    ]
-  },
+  "targetSpecies": "pumpkaboo",
+  "targetForms": [
+    "Small",
+    "Large",
+    "Super"
+  ],
   "species": "pumpkaboo",
   "form": "Normal"
 }

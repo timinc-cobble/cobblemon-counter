@@ -7,7 +7,7 @@ import us.timinc.mc.cobblemon.counter.extension.record
 object EggHatchHandler {
     fun handle(evt: HatchEggEvent.Post) {
         val player = evt.player
-        val pokemon = evt.egg.create(player)
+        val pokemon = evt.pokemon
         player.record(pokemon, CounterTypes.HATCH)
     }
 }
