@@ -42,8 +42,11 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         }
 
         val ignoreFormFor: Set<String> = emptySet()
-        val broadcast: Set<String> = CounterTypeRegistry.types().toSet()
+        val noBroadcastFor: Set<String> = emptySet()
     }
+
+    val broadcastList: Set<String>
+        get() = CounterTypeRegistry.types().filterNot(config.noBroadcastFor::contains).toSet()
 
     fun breakStreakOnForm(counterType: CounterType): Boolean = !config.ignoreFormFor.contains(counterType.type)
 
