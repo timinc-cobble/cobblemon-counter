@@ -55,7 +55,7 @@ class ClientCounterManager(
                 for ((speciesId, speciesRecord) in counter.count) {
                     val clientSpeciesRecord = targetClientCounter.count.getOrPut(speciesId, ::mutableMapOf)
                     for ((formName, count) in speciesRecord) {
-                        val clientBroadcastOn = config.broadcast.contains(counterType.type)
+                        val clientBroadcastOn = !config.noBroadcastFor.contains(counterType.type)
                         val serverBroadcastOn = data.broadcasts.contains(counterType.type)
                         if (clientBroadcastOn && serverBroadcastOn) {
                             val player = Minecraft.getInstance().player ?: return
