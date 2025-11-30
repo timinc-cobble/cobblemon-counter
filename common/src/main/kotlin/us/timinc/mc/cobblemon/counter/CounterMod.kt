@@ -42,8 +42,11 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         }
 
         val ignoreFormFor: Set<String> = emptySet()
-        val broadcast: Set<String> = CounterTypeRegistry.types().toSet()
+        val noBroadcastFor: Set<String> = emptySet()
     }
+
+    val broadcastList: Set<String>
+        get() = CounterTypeRegistry.types().filterNot(config.noBroadcastFor::contains).toSet()
 
     fun breakStreakOnForm(counterType: CounterType): Boolean = !config.ignoreFormFor.contains(counterType.type)
 
@@ -70,6 +73,7 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         val RESURRECTION = CounterTypeRegistry.registerCounterType(CounterType("resurrection"))
         val FISH = CounterTypeRegistry.registerCounterType(CounterType("fish"))
         val HATCH = CounterTypeRegistry.registerCounterType(CounterType("hatch"))
+        val SNACK = CounterTypeRegistry.registerCounterType(CounterType("snack"))
     }
 
     object ScoreTypes {
@@ -129,6 +133,7 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
         CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.LOWEST, BattleFaintedHandler::handle)
         CobblemonEvents.FOSSIL_REVIVED.subscribe(Priority.LOWEST, FossilRevivedHandler::handle)
         TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.LOWEST, FishedUpHandler::handle)
+        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.LOWEST, SnackedHandler::handle)
         CobblemonEvents.HATCH_EGG_POST.subscribe(Priority.LOWEST, EggHatchHandler::handle)
         registerSpawningCondition(CountSpawningCondition::class.java)
         PlayerInstancedDataStores

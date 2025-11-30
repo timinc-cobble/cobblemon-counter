@@ -12,7 +12,7 @@ import net.minecraft.resources.ResourceLocation
 import us.timinc.mc.cobblemon.counter.CounterMod
 import us.timinc.mc.cobblemon.counter.CounterMod.PlayerInstancedDataStores
 import us.timinc.mc.cobblemon.counter.CounterMod.breakStreakOnForm
-import us.timinc.mc.cobblemon.counter.CounterMod.config
+import us.timinc.mc.cobblemon.counter.CounterMod.broadcastList
 import us.timinc.mc.cobblemon.counter.api.Streak.Companion.IGNORED_SPECIES
 import us.timinc.mc.cobblemon.counter.data.SpeciesFormOverride
 import us.timinc.mc.cobblemon.counter.event.BreakStreakEvent
@@ -25,7 +25,8 @@ class CounterManager(
 ) : AbstractCounterManager(), InstancedPlayerData {
     companion object {
         val CODEC: Codec<CounterManager> = RecordCodecBuilder.create { instance ->
-            instance.group(PrimitiveCodec.STRING.fieldOf("uuid").forGetter { it.uuid.toString() },
+            instance.group(
+                PrimitiveCodec.STRING.fieldOf("uuid").forGetter { it.uuid.toString() },
                 Codec.unboundedMap(PrimitiveCodec.STRING, Counter.CODEC).fieldOf("counters").forGetter { manager ->
                     manager.counters.keys.map { key -> key.type }
                         .associateWith { key -> manager.counters[CounterTypeRegistry.findByType(key)]!!.clone() }
@@ -47,13 +48,14 @@ class CounterManager(
     ): Boolean {
         if (!silently) {
             var doBreak = false
-            CounterMod.Events.BREAK_STREAK_PRE.postThen(BreakStreakEvent.Pre(
-                this, counterType, BreakStreakEvent.Cause(
-                    speciesId, formName, originatingPokemon
-                )
-            ), ifSucceeded = {
-                doBreak = true
-            })
+            CounterMod.Events.BREAK_STREAK_PRE.postThen(
+                BreakStreakEvent.Pre(
+                    this, counterType, BreakStreakEvent.Cause(
+                        speciesId, formName, originatingPokemon
+                    )
+                ), ifSucceeded = {
+                    doBreak = true
+                })
 
             if (!doBreak) {
                 return false
@@ -95,11 +97,12 @@ class CounterManager(
             if (!breakStreakOnForm(counterType)) "untracked" else if (formOverride === null) initialFormName else formOverride.form
 
         var doRecord = false
-        CounterMod.Events.RECORD_PRE.postThen(RecordEvent.Pre(
-            this, counterType, speciesId, formName, pokemon
-        ), ifSucceeded = {
-            doRecord = true
-        })
+        CounterMod.Events.RECORD_PRE.postThen(
+            RecordEvent.Pre(
+                this, counterType, speciesId, formName, pokemon
+            ), ifSucceeded = {
+                doRecord = true
+            })
         if (!doRecord) return
 
         val counter = getCounter(counterType)
@@ -126,7 +129,7 @@ class CounterManager(
                     ), if (streakChanged) counter.streak else Streak(IGNORED_SPECIES)
                 )
             ),
-            config.broadcast
+            broadcastList
         )
 
         player.sendPacket(
@@ -154,7 +157,7 @@ class CounterManager(
                     mutableMapOf(), counter.streak
                 )
             ),
-            config.broadcast
+            broadcastList
         )
 
         player.sendPacket(
@@ -179,7 +182,7 @@ class CounterManager(
                     ), Streak(IGNORED_SPECIES)
                 )
             ),
-            config.broadcast
+            broadcastList
         )
 
         player.sendPacket(
