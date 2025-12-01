@@ -4,6 +4,8 @@ import com.cobblemon.mod.common.CobblemonNetwork.sendPacket
 import com.cobblemon.mod.common.api.storage.player.InstancedPlayerData
 import com.cobblemon.mod.common.net.messages.client.SetClientPlayerDataPacket
 import com.cobblemon.mod.common.pokemon.Pokemon
+import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
+import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.getPlayer
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.PrimitiveCodec
@@ -92,7 +94,7 @@ class CounterManager(
 
         val formOverride = SpeciesFormOverride.Manager.findMatch(pokemon)
 
-        val speciesId = if (formOverride === null) initialSpeciesId else ResourceLocation.parse(formOverride.species)
+        val speciesId = if (formOverride === null) initialSpeciesId else formOverride.species.asIdentifierDefaultingNamespace()
         val formName =
             if (!breakStreakOnForm(counterType)) "untracked" else if (formOverride === null) initialFormName else formOverride.form
 
@@ -107,7 +109,18 @@ class CounterManager(
 
         val counter = getCounter(counterType)
         val speciesRecord = counter.count.getOrPut(speciesId) { mutableMapOf() }
+        val minecraftNamespacedSpecies = ResourceLocation.fromNamespaceAndPath("minecraft", speciesId.path)
+        val minecraftSpeciesRecord =
+            counter.count.getOrDefault(minecraftNamespacedSpecies, mapOf())
+        minecraftSpeciesRecord.forEach { (formName, count) ->
+            speciesRecord[formName] = speciesRecord.getOrDefault(formName, 0) + count
+        }
+        counter.count.remove(minecraftNamespacedSpecies)
         speciesRecord[formName] = speciesRecord.getOrDefault(formName, 0) + 1
+
+        if (counter.streak.species == minecraftNamespacedSpecies) {
+            counter.streak.species = speciesId
+        }
 
         var streakChanged = false
         if (counter.streak.wouldBreak(speciesId, formName)) {
