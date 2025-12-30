@@ -41,9 +41,14 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
             ScoreTypes
         }
 
+        enum class BroadcastLocations {
+            CHAT, ACTION_BAR
+        }
+
         val ignoreFormFor: Set<String> = emptySet()
         val noBroadcastFor: Set<String> = emptySet()
         val minimumStreakForBroadcast: Int = 1
+        val broadcastLocation: BroadcastLocations = BroadcastLocations.CHAT
     }
 
     val broadcastList: Set<String>

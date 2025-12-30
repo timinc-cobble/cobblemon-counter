@@ -7,6 +7,7 @@ import com.cobblemon.mod.common.util.writeString
 import net.minecraft.client.Minecraft
 import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
+import us.timinc.mc.cobblemon.counter.CounterMod
 import us.timinc.mc.cobblemon.counter.CounterMod.PlayerInstancedDataStores
 import us.timinc.mc.cobblemon.counter.CounterMod.config
 import kotlin.math.min
@@ -67,7 +68,7 @@ class ClientCounterManager(
                             )
                         ) {
                             val player = Minecraft.getInstance().player ?: return
-                            player.sendSystemMessage(
+                            player.displayClientMessage(
                                 Component.translatable(
                                     "cobbled_counter.broadcast.${counterType.type}",
                                     Component.translatable("cobblemon.species.${speciesId.path}.name"),
@@ -82,7 +83,8 @@ class ClientCounterManager(
                                             counter.streak.count
                                         )
                                     } else ""
-                                )
+                                ),
+                                config.broadcastLocation == CounterMod.CounterConfig.BroadcastLocations.ACTION_BAR
                             )
                         }
 
