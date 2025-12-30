@@ -9,10 +9,12 @@ import net.minecraft.network.RegistryFriendlyByteBuf
 import net.minecraft.network.chat.Component
 import us.timinc.mc.cobblemon.counter.CounterMod.PlayerInstancedDataStores
 import us.timinc.mc.cobblemon.counter.CounterMod.config
+import kotlin.math.min
 
 class ClientCounterManager(
     override val counters: MutableMap<CounterType, Counter>,
     val broadcasts: Set<String>,
+    val minimumStreakToBroadcast: Int,
 ) : AbstractCounterManager(), ClientInstancedPlayerData {
     override fun encode(buf: RegistryFriendlyByteBuf) {
         buf.writeMap(
@@ -23,10 +25,11 @@ class ClientCounterManager(
         buf.writeCollection(
             broadcasts
         ) { _, value -> buf.writeString(value) }
+        buf.writeInt(minimumStreakToBroadcast)
     }
 
     companion object {
-        var clientCounterData = ClientCounterManager(mutableMapOf(), setOf())
+        var clientCounterData = ClientCounterManager(mutableMapOf(), setOf(), 0)
 
         fun decode(buf: RegistryFriendlyByteBuf): SetClientPlayerDataPacket {
             val map = buf.readMap(
@@ -34,9 +37,10 @@ class ClientCounterManager(
                 { Counter().also { it.decode(buf) } }
             )
             val broadcasts = buf.readList { buf.readString() }
+            val minimumStreakToBroadcast = buf.readInt()
             return SetClientPlayerDataPacket(
                 PlayerInstancedDataStores.COUNTER,
-                ClientCounterManager(map, broadcasts.toSet())
+                ClientCounterManager(map, broadcasts.toSet(), minimumStreakToBroadcast)
             )
         }
 
@@ -57,7 +61,11 @@ class ClientCounterManager(
                     for ((formName, count) in speciesRecord) {
                         val clientBroadcastOn = !config.noBroadcastFor.contains(counterType.type)
                         val serverBroadcastOn = data.broadcasts.contains(counterType.type)
-                        if (clientBroadcastOn && serverBroadcastOn) {
+                        if (clientBroadcastOn && serverBroadcastOn && counter.streak.count >= min(
+                                config.minimumStreakForBroadcast,
+                                data.minimumStreakToBroadcast
+                            )
+                        ) {
                             val player = Minecraft.getInstance().player ?: return
                             player.sendSystemMessage(
                                 Component.translatable(
