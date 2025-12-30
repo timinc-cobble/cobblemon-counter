@@ -5,7 +5,6 @@ import com.cobblemon.mod.common.api.storage.player.InstancedPlayerData
 import com.cobblemon.mod.common.net.messages.client.SetClientPlayerDataPacket
 import com.cobblemon.mod.common.pokemon.Pokemon
 import com.cobblemon.mod.common.util.asIdentifierDefaultingNamespace
-import com.cobblemon.mod.common.util.cobblemonResource
 import com.cobblemon.mod.common.util.getPlayer
 import com.mojang.serialization.Codec
 import com.mojang.serialization.codecs.PrimitiveCodec
@@ -94,7 +93,8 @@ class CounterManager(
 
         val formOverride = SpeciesFormOverride.Manager.findMatch(pokemon)
 
-        val speciesId = if (formOverride === null) initialSpeciesId else formOverride.species.asIdentifierDefaultingNamespace()
+        val speciesId =
+            if (formOverride === null) initialSpeciesId else formOverride.species.asIdentifierDefaultingNamespace()
         val formName =
             if (!breakStreakOnForm(counterType)) "untracked" else if (formOverride === null) initialFormName else formOverride.form
 
@@ -142,7 +142,8 @@ class CounterManager(
                     ), if (streakChanged) counter.streak else Streak(IGNORED_SPECIES)
                 )
             ),
-            broadcastList
+            broadcastList,
+            CounterMod.config.minimumStreakForBroadcast
         )
 
         player.sendPacket(
@@ -170,7 +171,8 @@ class CounterManager(
                     mutableMapOf(), counter.streak
                 )
             ),
-            broadcastList
+            broadcastList,
+            CounterMod.config.minimumStreakForBroadcast
         )
 
         player.sendPacket(
@@ -195,7 +197,8 @@ class CounterManager(
                     ), Streak(IGNORED_SPECIES)
                 )
             ),
-            broadcastList
+            broadcastList,
+            CounterMod.config.minimumStreakForBroadcast
         )
 
         player.sendPacket(
@@ -208,6 +211,6 @@ class CounterManager(
     override fun toClientData(): ClientCounterManager {
         val cloned: MutableMap<CounterType, Counter> = mutableMapOf()
         counters.forEach { (type, counter) -> cloned[type] = counter.clone() }
-        return ClientCounterManager(cloned, emptySet())
+        return ClientCounterManager(cloned, emptySet(), 0)
     }
 }
