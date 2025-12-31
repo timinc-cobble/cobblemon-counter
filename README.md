@@ -1,6 +1,6 @@
 # Cobbled Counter
 
-v1.7.1-1.8.1
+v1.7.1-1.9
 
 [Modrinth](https://modrinth.com/mod/cobblemon-counter)
 
@@ -20,6 +20,7 @@ v1.7.1-1.8.1
     - Resurrections
     - Fish-ups
     - Egg hatchings
+    - Pokémon eating a snack nearby
 - Tracks both counts and streaks for every stat. Counts are for the lifetime of the player in a given world, and streaks are broken if the player performs that action on another species/form.
     - Some odd variants are mapped back to the Normal variant.
 - Adds a Counter item to view your current stats.
@@ -36,33 +37,37 @@ As a quick test for the counting functionality, jump into a fresh world and give
 
 ## Player Help
 
-[Commands](https://www.notion.so/Commands-2b657e0d4afd8196b040d002dff9fbce?pvs=21)
+[Commands](https://www.notion.so/Commands-2d957e0d4afd81b486d0f2cb7919e5f7?pvs=21)
 
-[Config Options](https://www.notion.so/Config-Options-2b657e0d4afd8146b1c4e2125fbc72b3?pvs=21)
+[Config Options](https://www.notion.so/Config-Options-2d957e0d4afd811583feffb7ea8401a2?pvs=21)
 
 ## Addon Dev Help
 
 ### Data Pack Help
 
-[Spawning Conditions](https://www.notion.so/Spawning-Conditions-2b657e0d4afd81dba51cedc479ea5659?pvs=21)
+[Spawning Conditions](https://www.notion.so/Spawning-Conditions-2d957e0d4afd8181ae02d33ced21d1ff?pvs=21)
 
-[Making an Addon](https://www.notion.so/Making-an-Addon-2b657e0d4afd81139c08f9349b32faaf?pvs=21)
+[Making an Addon](https://www.notion.so/Making-an-Addon-2d957e0d4afd815caa55dc8e3f879824?pvs=21)
 
 ### Resource Pack Help
 
-[Translations](https://www.notion.so/Translations-2b657e0d4afd8132bd31c0944063037f?pvs=21)
+[Translations](https://www.notion.so/Translations-2d957e0d4afd81e5aa9efc8d88ec103b?pvs=21)
 
-[Resources](https://www.notion.so/Resources-2b657e0d4afd81d58e4de80c7e4a776e?pvs=21)
+[Resources](https://www.notion.so/Resources-2d957e0d4afd81f58a13e579facf36a5?pvs=21)
 
 ## Mod Dev Help
 
-[Events](https://www.notion.so/Events-2b657e0d4afd815680cadc97f1595a9b?pvs=21)
+[Events](https://www.notion.so/Events-2d957e0d4afd81eea422f5f3b9de5462?pvs=21)
 
-[CounterManager](https://www.notion.so/CounterManager-2b657e0d4afd816aa23bed5600d70fd0?pvs=21)
+[CounterManager](https://www.notion.so/CounterManager-2d957e0d4afd81f79bced4455f2b9f2c?pvs=21)
 
 ## Roadmap
 
 If you’d like to keep up with the work being done on the mod, please join [the Discord](https://discord.com/invite/WKAR27SdSv) and subscribe to notifications on the channel for this content. You can also keep track of the to do list available on the mod’s main page ([Counter](https://www.notion.so/Counter-21d57e0d4afd80d0815fc97b89368998?pvs=21)).
+
+## Known Issues
+
+- None. Why? Who’s asking? 👀
 
 ## Feedback
 
