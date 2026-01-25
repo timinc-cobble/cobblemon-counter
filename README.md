@@ -1,6 +1,6 @@
 # Cobbled Counter
 
-v1.7.1-1.9
+v1.7.2-1.9
 
 [Modrinth](https://modrinth.com/mod/cobblemon-counter)
 
@@ -37,29 +37,29 @@ As a quick test for the counting functionality, jump into a fresh world and give
 
 ## Player Help
 
-[Commands](https://www.notion.so/Commands-2d957e0d4afd81b486d0f2cb7919e5f7?pvs=21)
+[Commands](https://www.notion.so/Commands-2f357e0d4afd81ea96d2fec2dd3acfd0?pvs=21)
 
-[Config Options](https://www.notion.so/Config-Options-2d957e0d4afd811583feffb7ea8401a2?pvs=21)
+[Config Options](https://www.notion.so/Config-Options-2f357e0d4afd8120b19ace44690c8a6e?pvs=21)
 
 ## Addon Dev Help
 
 ### Data Pack Help
 
-[Spawning Conditions](https://www.notion.so/Spawning-Conditions-2d957e0d4afd8181ae02d33ced21d1ff?pvs=21)
+[Spawning Conditions](https://www.notion.so/Spawning-Conditions-2f357e0d4afd81bab1d7f650d877aabe?pvs=21)
 
-[Making an Addon](https://www.notion.so/Making-an-Addon-2d957e0d4afd815caa55dc8e3f879824?pvs=21)
+[Making an Addon](https://www.notion.so/Making-an-Addon-2f357e0d4afd81bc808cc50a5b4c3bb7?pvs=21)
 
 ### Resource Pack Help
 
-[Translations](https://www.notion.so/Translations-2d957e0d4afd81e5aa9efc8d88ec103b?pvs=21)
+[Translations](https://www.notion.so/Translations-2f357e0d4afd81e988add3c189b58657?pvs=21)
 
-[Resources](https://www.notion.so/Resources-2d957e0d4afd81f58a13e579facf36a5?pvs=21)
+[Resources](https://www.notion.so/Resources-2f357e0d4afd81d5b0fcf6fb93afc042?pvs=21)
 
 ## Mod Dev Help
 
-[Events](https://www.notion.so/Events-2d957e0d4afd81eea422f5f3b9de5462?pvs=21)
+[Events](https://www.notion.so/Events-2f357e0d4afd815eb7bae9c332b49e59?pvs=21)
 
-[CounterManager](https://www.notion.so/CounterManager-2d957e0d4afd81f79bced4455f2b9f2c?pvs=21)
+[CounterManager](https://www.notion.so/CounterManager-2f357e0d4afd81908eb7e40e906a7d1d?pvs=21)
 
 ## Roadmap
 
