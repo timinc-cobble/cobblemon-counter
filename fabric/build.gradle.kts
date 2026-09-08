@@ -13,6 +13,7 @@ loom {
     enableTransitiveAccessWideners.set(true)
     silentMojangMappingsLicense()
 
+    @Suppress("UnstableApiUsage")
     mixin {
         defaultRefmapName.set("mixins.${project.name}.refmap.json")
     }
@@ -22,9 +23,15 @@ val shadowCommon = configurations.create("shadowCommon")
 dependencies {
     minecraft("com.mojang:minecraft:${property("minecraft_version")}")
     mappings(loom.officialMojangMappings())
-    modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader_version")}")
 
     modRuntimeOnly("net.fabricmc.fabric-api:fabric-api:${property("fabric_api_version")}")
+    modRuntimeOnly("org.graalvm.js:js:${property("graalvm_version")}")
+    modRuntimeOnly("org.graalvm.sdk:graal-sdk:${property("graalvm_version")}")
+    modRuntimeOnly("org.graalvm.regex:regex:${property("graalvm_version")}")
+    modRuntimeOnly("org.graalvm.truffle:truffle-api:${property("graalvm_version")}")
+    modRuntimeOnly("com.ibm.icu:icu4j:${property("icu4j_version")}")
+
+    modImplementation("net.fabricmc:fabric-loader:${property("fabric_loader_version")}")
     modImplementation(fabricApi.module("fabric-command-api-v2", property("fabric_api_version").toString()))
 
     //needed for cobblemon
@@ -72,5 +79,22 @@ tasks {
         inputFile.set(shadowJar.flatMap { it.archiveFile })
         archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         archiveVersion.set("${rootProject.version}")
+    }
+}
+
+// For local publisihng
+publishing {
+    publications {
+        create<MavenPublication>(project.name) {
+            artifact(tasks.getByName("remapJar"))
+            artifact(tasks.getByName("remapSourcesJar"))
+
+            @Suppress("UnstableApiUsage")
+            loom.disableDeprecatedPomGeneration(this)
+
+            groupId = "remapped.maven.modrinth"
+            artifactId = "${rootProject.name}-b9d2d3ba"
+            version = "${rootProject.property("modCobblemonVersion")}-${project.name}-${rootProject.property("modMyVersion")}"
+        }
     }
 }
