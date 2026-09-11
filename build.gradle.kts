@@ -1,6 +1,7 @@
 plugins {
     id("java")
     id("java-library")
+    id("maven-publish")
     kotlin("jvm") version("2.2.20")
 
     id("dev.architectury.loom") version("1.11-SNAPSHOT") apply false
@@ -11,10 +12,11 @@ allprojects {
     apply(plugin = "java")
     apply(plugin = "org.jetbrains.kotlin.jvm")
 
-    version = "${project.properties["modCobblemonVersion"]!!}-${project.properties["modMyVersion"]!!}"
-    group = project.properties["maven_group"]!!
+    version = "${property("modCobblemonVersion")}-${property("modMyVersion")}"
+    group = property("maven_group")!!
 
     repositories {
+        mavenLocal()
         mavenCentral()
         maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
         maven("https://maven.impactdev.net/repository/development/")
@@ -30,5 +32,9 @@ allprojects {
     java {
         withSourcesJar()
     }
+}
+
+subprojects {
+    apply(plugin = "maven-publish")
 }
 
