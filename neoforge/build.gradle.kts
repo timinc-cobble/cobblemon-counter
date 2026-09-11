@@ -84,3 +84,20 @@ tasks {
         archiveVersion.set("${rootProject.version}")
     }
 }
+
+// For local publishing
+publishing {
+    publications {
+        create<MavenPublication>(project.name) {
+            artifact(tasks.getByName("remapJar"))
+            artifact(tasks.getByName("remapSourcesJar"))
+
+            @Suppress("UnstableApiUsage")
+            loom.disableDeprecatedPomGeneration(this)
+
+            groupId = "remapped.maven.modrinth"
+            artifactId = "${rootProject.name}-cf182663"
+            version = "${rootProject.property("modCobblemonVersion")}-${project.name}-${rootProject.property("modMyVersion")}"
+        }
+    }
+}
