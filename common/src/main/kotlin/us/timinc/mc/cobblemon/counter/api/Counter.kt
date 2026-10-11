@@ -31,7 +31,8 @@ class Counter(
 
     fun clone(): Counter {
         return Counter(
-            count.toMutableMap(), streak.clone()
+            count.mapValues { (_, speciesRecord) -> speciesRecord.toMutableMap() }.toMutableMap(),
+            streak.clone()
         )
     }
 
