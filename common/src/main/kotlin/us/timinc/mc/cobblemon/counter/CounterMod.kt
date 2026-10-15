@@ -135,12 +135,12 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
 
     init {
         PlatformEvents.SERVER_STARTING.subscribe(Priority.LOWEST, ServerStartingHandler::handle)
-        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.LOWEST, CatchHandler::handle)
-        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.LOWEST, BattleFaintedHandler::handle)
-        CobblemonEvents.FOSSIL_REVIVED.subscribe(Priority.LOWEST, FossilRevivedHandler::handle)
-        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.LOWEST, FishedUpHandler::handle)
-        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.LOWEST, SnackedHandler::handle)
-        CobblemonEvents.HATCH_EGG_POST.subscribe(Priority.LOWEST, EggHatchHandler::handle)
+        CobblemonEvents.POKEMON_CAPTURED.subscribe(Priority.NORMAL, CatchHandler::handle)
+        CobblemonEvents.BATTLE_FAINTED.subscribe(Priority.NORMAL, BattleFaintedHandler::handle)
+        CobblemonEvents.FOSSIL_REVIVED.subscribe(Priority.NORMAL, FossilRevivedHandler::handle)
+        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.NORMAL, FishedUpHandler::handle)
+        TimCoreEvents.POKEMON_ENTITY_DID_SPAWN.subscribe(Priority.NORMAL, SnackedHandler::handle)
+        CobblemonEvents.HATCH_EGG_POST.subscribe(Priority.NORMAL, EggHatchHandler::handle)
         registerSpawningCondition(CountSpawningCondition::class.java)
         PlayerInstancedDataStores
         SaveTasks
