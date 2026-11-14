@@ -1,5 +1,5 @@
 plugins {
-    id("com.github.johnrengelman.shadow") version "8.1.1"
+    id("com.gradleup.shadow")
     id("dev.architectury.loom")
     id("architectury-plugin")
 }
@@ -15,12 +15,10 @@ loom {
 }
 
 repositories {
-    mavenCentral()
-    maven("https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/")
-    maven("https://maven.impactdev.net/repository/development/")
     maven("https://hub.spigotmc.org/nexus/content/groups/public/")
     maven("https://thedarkcolour.github.io/KotlinForForge/")
-    maven("https://maven.neoforged.net")
+    maven("https://maven.neoforged.net/releases")
+    maven("https://maven.su5ed.dev/releases")
 }
 
 val shadowBundle = configurations.create("shadowBundle") {
@@ -35,7 +33,7 @@ dependencies {
 
     modImplementation("com.cobblemon:neoforge:${property("cobblemon_version")}") { isTransitive = false }
     //Needed for cobblemon
-    forgeRuntimeLibrary("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
+    implementation("thedarkcolour:kotlinforforge-neoforge:${property("kotlin_for_forge_version")}") {
         exclude("net.neoforged.fancymodloader", "loader")
     }
 
@@ -48,29 +46,32 @@ dependencies {
     testImplementation("org.junit.jupiter:junit-jupiter-api:${property("junit_version")}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${property("junit_version")}")
 
-    modImplementation("maven.modrinth:cobblemon-tim-core:${property("tim_core_neoforge_version")}")
-}
-
-tasks.getByName<Test>("test") {
-    useJUnitPlatform()
-}
-
-tasks.processResources {
-    inputs.property("version", project.version)
-
-    filesMatching("META-INF/neoforge.mods.toml") {
-        expand(project.properties)
-    }
+    modImplementation("us.timinc.mc.cobblemon.timcore:neoforge:${property("tim_core_version")}") { isTransitive = false }
 }
 
 tasks {
+    processResources {
+        inputs.property("version", project.version)
+
+        filesMatching("META-INF/neoforge.mods.toml") {
+            @Suppress("DEPRECATION", "We'll figure it out when Gradle 10 releases")
+            expand(project.properties)
+        }
+    }
 
     jar {
         archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         archiveClassifier.set("dev-slim")
     }
 
+    sourcesJar {
+        dependsOn(project(":common").tasks.named("sourcesJar"))
+        from(project(":common").tasks.named<Jar>("sourcesJar").get().archiveFile.map { zipTree(it) })
+    }
+
     shadowJar {
+        duplicatesStrategy = DuplicatesStrategy.INCLUDE
+
         exclude("fabric.mod.json")
         archiveClassifier.set("dev-shadow")
         archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
@@ -83,21 +84,9 @@ tasks {
         archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
         archiveVersion.set("${rootProject.version}")
     }
-}
 
-// For local publishing
-publishing {
-    publications {
-        create<MavenPublication>(project.name) {
-            artifact(tasks.getByName("remapJar"))
-            artifact(tasks.getByName("remapSourcesJar"))
-
-            @Suppress("UnstableApiUsage")
-            loom.disableDeprecatedPomGeneration(this)
-
-            groupId = "remapped.maven.modrinth"
-            artifactId = "${rootProject.name}-cf182663"
-            version = "${rootProject.property("modCobblemonVersion")}-${project.name}-${rootProject.property("modMyVersion")}"
-        }
+    remapSourcesJar {
+        archiveBaseName.set("${rootProject.property("archives_base_name")}-${project.name}")
+        archiveVersion.set("${rootProject.version}")
     }
 }
