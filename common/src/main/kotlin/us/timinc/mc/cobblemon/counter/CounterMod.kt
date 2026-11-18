@@ -47,7 +47,7 @@ object CounterMod : AbstractMod<CounterMod.CounterConfig>(MOD_ID, CounterConfig:
 
         val ignoreFormFor: Set<String> = emptySet()
         val noBroadcastFor: Set<String> = emptySet()
-        val minimumStreakForBroadcast: Int = 1
+        val minimumStreakForBroadcast: Int = 0
         val broadcastLocation: BroadcastLocations = BroadcastLocations.CHAT
     }
 

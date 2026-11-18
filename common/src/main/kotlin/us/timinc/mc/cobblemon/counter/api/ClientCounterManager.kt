@@ -10,7 +10,6 @@ import net.minecraft.network.chat.Component
 import us.timinc.mc.cobblemon.counter.CounterMod
 import us.timinc.mc.cobblemon.counter.CounterMod.PlayerInstancedDataStores
 import us.timinc.mc.cobblemon.counter.CounterMod.config
-import kotlin.math.min
 
 class ClientCounterManager(
     override val counters: MutableMap<CounterType, Counter>,
@@ -62,11 +61,9 @@ class ClientCounterManager(
                     for ((formName, count) in speciesRecord) {
                         val clientBroadcastOn = !config.noBroadcastFor.contains(counterType.type)
                         val serverBroadcastOn = data.broadcasts.contains(counterType.type)
-                        if (clientBroadcastOn && serverBroadcastOn && counter.streak.count >= min(
-                                config.minimumStreakForBroadcast,
-                                data.minimumStreakToBroadcast
-                            )
-                        ) {
+                        val broadcastThreshold =
+                            config.minimumStreakForBroadcast.takeIf { it > 0 } ?: data.minimumStreakToBroadcast
+                        if (clientBroadcastOn && serverBroadcastOn && counter.streak.count >= broadcastThreshold) {
                             val player = Minecraft.getInstance().player ?: return
                             player.displayClientMessage(
                                 Component.translatable(
